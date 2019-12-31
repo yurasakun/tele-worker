@@ -31,6 +31,7 @@ class ClickBot():
             print("No ads aviable from "  + self.currentChat.name  + " (" + str(self.noAds) + ")")
 
             self.teleClient.send_message(self.currentChat.name, "/visit")
+            self.getReward(chat)
             time.sleep(5)
         else:
             self.teleClient.send_message(self.currentChat.name, "/visit")

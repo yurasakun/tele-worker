@@ -17,7 +17,7 @@ class Main():
 
         ClickBot(self.teleClient, config['CLICK_CHANNEL']['click_bot'], self.simulator)
 
-        print('sleep 3h')
+        print('sleep 1h')
         time.sleep(3600)
         
     def __del__(self):
