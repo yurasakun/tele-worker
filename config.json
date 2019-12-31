@@ -1,0 +1,32 @@
+[
+    {
+        "CLICK_CHANNEL": {
+            "click_bot" : {
+                "name": "ZEC Click Bot",
+                "id": "Zcash_click_bot"
+            },
+            "TGZaraBot": {
+                "name": "TG ZaraBotOK",
+                "id": "TGZaraBot"
+            }
+        },
+        "API_ID": 100000,
+        "API_HASH": "API_HASH",
+        "API_NAME": "API_NAME"
+    },
+    {
+        "CLICK_CHANNEL": {
+            "click_bot" : {
+                "name": "ZEC Click Bot",
+                "id": "Zcash_click_bot"
+            },
+            "TGZaraBot": {
+                "name": "TG ZaraBotOK",
+                "id": "TGZaraBot"
+            }
+        },
+        "API_ID": 1000000,
+        "API_HASH": "API_HASH",
+        "API_NAME": "API_NAME"
+    }
+]
