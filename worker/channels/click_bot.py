@@ -19,45 +19,44 @@ class ClickBot():
         while self.noAds != 2:
             self.messageCheck(self.currentChat)
  
+
     def messageCheck(self, chat):
         msg = self.teleClient.get_messages(chat, limit=1)
-        print("="*15)
         now = datetime.now()
-        print("Get new task from " + self.currentChat.name + " ({})".format(now.strftime("%H:%M:%S")))
+
+        if any(ele in msg[0].message for ele in ['seconds']):
+            sleepTime = int(re.search(r'\d+', msg[0].message).group())
+            print("Find reward!! Wait " + str(sleepTime) + " seconds.")
+            time.sleep(sleepTime + 1)
+            print('='*30)
+
+        print("Get new task from " + self.currentChat.name + " at ({})".format(now.strftime("%H:%M:%S")))
 
         if any(ele in msg[0].message for ele in ['no new ads']):
             self.noAds = self.noAds +1
-
             print("No ads aviable from "  + self.currentChat.name  + " (" + str(self.noAds) + ")")
 
-            self.teleClient.send_message(self.currentChat.name, "/visit")
-            self.getReward(chat)
-            time.sleep(5)
-        else:
-            self.teleClient.send_message(self.currentChat.name, "/visit")
-            time.sleep(5)
-            self.getReward(chat)
+        self.teleClient.send_message(self.currentChat.name, "/visit")
+        time.sleep(5)
+        self.getReward(chat)
+
 
     def getReward(self, chat):
+        try:
             msg = self.teleClient.get_messages(chat, limit=1)
             button_data = msg[0].reply_markup.rows[1].buttons[1].data
             message_id = msg[0].id
             url = msg[0].reply_markup.rows[0].buttons[0].url
-            print(url)
 
             if self.checkUrl(url ,message_id, button_data, chat):
+                print("Opening url: " + url)
                 self.simulator.get_html(url)
-
-                print("Open url")
-                time.sleep(3)
-                msg = self.teleClient.get_messages(chat, limit=1)
-
-                if any(ele in msg[0].message for ele in ['seconds']):
-                    sleepTime = int(re.search(r'\d+', msg[0].message).group())
-                    print("Find reward " + str(sleepTime))
-                    time.sleep(sleepTime + 1)
             else:
                 print('No reward')
+        except:
+            print("Cant find ads url")
+
+
 
     def checkUrl(self, url, message_id, button_data, chat):
         try:
@@ -69,7 +68,7 @@ class ClickBot():
 
         if re.search(r'\breCAPTCHA\b', pageStr):
             time.sleep(5)
-            print("Capcha!")
+            print("Skiping task...")
             self.teleClient(GetBotCallbackAnswerRequest(
                         chat,
                         message_id,
@@ -78,17 +77,7 @@ class ClickBot():
             return False
         else:
             return True
-        
-    # def nextDialog(self):
-    #     selected = self.channels.index(self.currentChannel)
-    #     nextChannel = 0
 
-    #     if selected == len(self.channels) -1:
-    #         nextChannel = 0
-    #     else:
-    #         nextChannel = selected + 1
-        
-    #     return self.channels[nextChannel]
 
     def getChannel(self, channel):
         dlgs = self.teleClient.get_dialogs()
