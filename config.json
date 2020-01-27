@@ -3,11 +3,8 @@
         "CLICK_CHANNEL": {
             "click_bot" : {
                 "name": "ZEC Click Bot",
-                "id": "Zcash_click_bot"
-            },
-            "TGZaraBot": {
-                "name": "TG ZaraBotOK",
-                "id": "TGZaraBot"
+                "id": "Zcash_click_bot",
+                "wallet": "myZcashWaller"
             }
         },
         "API_ID": 100000,
@@ -18,11 +15,8 @@
         "CLICK_CHANNEL": {
             "click_bot" : {
                 "name": "ZEC Click Bot",
-                "id": "Zcash_click_bot"
-            },
-            "TGZaraBot": {
-                "name": "TG ZaraBotOK",
-                "id": "TGZaraBot"
+                "id": "Zcash_click_bot",
+                "wallet": "myZcashWaller"
             }
         },
         "API_ID": 1000000,
