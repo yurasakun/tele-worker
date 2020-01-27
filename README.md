@@ -48,4 +48,4 @@ This script has configuration and cant work with  `Zcash_click_bot`, so you need
  * In each new worker folder run `python3 main.py` and login
  * If you get errors install dependencies from `requirement.txt`
  * Go to `containers.py` and replace path `/home/botfarm/tele-worker/workers` with your path to workers folder
- * Run `sudo python3 containers.py` and create container for each worker
+ * Run `python3 containers.py` and create container for each worker
