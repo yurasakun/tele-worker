@@ -13,9 +13,7 @@ class Main():
         self.teleClient = TelegramClient(config['API_NAME'], config['API_ID'], config['API_HASH'])
         self.teleClient.start()
 
-        ZaraBot(self.teleClient, config['CLICK_CHANNEL']['TGZaraBot'], self.simulator)
-
-        ClickBot(self.teleClient, config['CLICK_CHANNEL']['click_bot'], self.simulator)
+        ClickBot(self.teleClient, config['CLICK_CHANNEL']['click_bot'], self.simulator, config['API_NAME'])
 
         print('sleep 1h')
         time.sleep(3600)
