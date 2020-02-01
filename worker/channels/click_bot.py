@@ -27,7 +27,10 @@ class ClickBot():
         time.sleep(5)
         msg = self.teleClient.get_messages(chat, limit=1)
         widthraw_data = re.findall("\d+\.\d+", msg[0].message)
-        print("[ "+self.name +" ] " + "My balance {} ZEC".format(widthraw_data[0]))
+        try:
+            print("[ " + self.name + " ] " + "My balance {} DOGE".format(widthraw_data[0]))
+        except:
+            print("[ " + self.name + " ] " + "My balance {0} DOGE")
         if len(widthraw_data) == 1:
             self.teleClient.send_message(self.currentChat.name, self.currentChannel['wallet'])
             time.sleep(5)

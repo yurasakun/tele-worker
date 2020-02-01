@@ -14,8 +14,8 @@ This script has configuration and cant work with  `Zcash_click_bot`, so you need
  * If you get errors install dependencies from `requirement.txt`
  * Go to `containers.py` and replace path `/home/botfarm/tele-worker/workers` with your path to workers folder
  * Run `sudo python3 containers.py` and create container for each worker
-
- ### For windows:
+ 
+### For windows:
 * Create Docker Image
  ```
     sudo docker build -t tele-worker .
@@ -35,7 +35,7 @@ This script has configuration and cant work with  `Zcash_click_bot`, so you need
  ```
  from selenium.webdriver.firefox.webdriver import WebDriver
  ```
- and add
+ and add 
  ```
   driver = WebDriver(executable_path=r'yourpathtodriver\geckodriver.exe',options=self.opts)
   self.browser = driver
