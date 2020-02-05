@@ -2,6 +2,7 @@
 import json
 from simulator import Simulator
 from channels.click_bot import ClickBot
+from channels.join import MsgCheck
 from channels.zara_bot import ZaraBot
 from telethon import TelegramClient
 from telethon import sync, events
@@ -14,6 +15,7 @@ class Main():
         self.teleClient.start()
 
         ClickBot(self.teleClient, config['CLICK_CHANNEL']['click_bot'], self.simulator, config['API_NAME'])
+        MsgCheck(self.teleClient, config['CLICK_CHANNEL']['click_bot'], self.simulator, config['API_NAME'])
 
         print('sleep 1h')
         time.sleep(3600)
