@@ -66,10 +66,22 @@ class MsgCheck():
                 msg_channel = self.teleClient.send_message(channel_name, '/start')
                 time.sleep(5)
                 msg_get = self.teleClient.get_messages(channel_name, limit=1)
+                msg_text = msg_get[0].raw_text
+                if "/start" in msg_text and len(msg_text)==6:
+                    self.teleClient(GetBotCallbackAnswerRequest(
+                    chat,
+                    message_id,
+                    data=button_data
+                    ))
+                    print("[ " + self.name + " ] " + "Skiping task.....")
+                else:
+                    message_channel_id = msg_get[0].id
+                    self.teleClient.forward_messages(self.currentChat.name, message_channel_id, channel_name)
+                    print("[ " + self.name + " ] " + "Forward message send good good!")
+                    
+                    
 
-                message_channel_id = msg_get[0].id
-                self.teleClient.forward_messages(self.currentChat.name, message_channel_id, channel_name)
-                print("[ " + self.name + " ] " + "Forward message send good good!")
+                
 
 
 
