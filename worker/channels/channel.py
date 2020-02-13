@@ -70,7 +70,10 @@ class JoinChannel():
 
     def returnName(self, link):
         link = link[link.find("/") + 2:]
-        link = link[link.find("/") + 1:]
+        if '?' in link:
+            link = link[link.find("/") + 1: link.find("?")]
+        else:
+            link = link[link.find("/") + 1:]
         return link
 
     def getChannel(self, channel):
