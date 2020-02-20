@@ -32,11 +32,11 @@ class ClickBot():
         except:
             print("[ " + self.name + " ] " + "My balance {0} DOGE")
         if len(widthraw_data) == 1:
-            self.teleClient.send_message(self.currentChat.name, self.currentChannel['wallet'])
+            self.teleClient.send_message("@"+self.currentChat.username, self.currentChannel['wallet'])
             time.sleep(5)
-            self.teleClient.send_message(self.currentChat.name, widthraw_data[0])
+            self.teleClient.send_message("@"+self.currentChat.username, widthraw_data[0])
             time.sleep(5)
-            self.teleClient.send_message(self.currentChat.name, "✅ Confirm")
+            self.teleClient.send_message("@"+self.currentChat.username, "✅ Confirm")
  
 
     def messageCheck(self, chat):
