@@ -20,7 +20,7 @@ class MsgCheck():
         self.checkWidthraw(self.currentChat)
 
     def checkWidthraw(self, chat):
-        self.teleClient.send_message(self.currentChat.name, "💵 Withdraw")
+        self.teleClient.send_message("@"+self.currentChat.username, "💵 Withdraw")
         time.sleep(5)
         msg = self.teleClient.get_messages(chat, limit=1)
         widthraw_data = re.findall("\d+\.\d+", msg[0].message)
@@ -29,23 +29,23 @@ class MsgCheck():
         except:
             print("[ " + self.name + " ] " + "My balance {0} DOGE")
         if len(widthraw_data) == 1:
-            self.teleClient.send_message(self.currentChat.name, self.currentChannel['wallet'])
+            self.teleClient.send_message("@"+self.currentChat.username, self.currentChannel['wallet'])
             time.sleep(5)
-            self.teleClient.send_message(self.currentChat.name, widthraw_data[0])
+            self.teleClient.send_message("@"+self.currentChat.username, widthraw_data[0])
             time.sleep(5)
-            self.teleClient.send_message(self.currentChat.name, "✅ Confirm")
+            self.teleClient.send_message("@"+self.currentChat.username, "✅ Confirm")
 
     def messageCheck(self, chat):
         msg = self.teleClient.get_messages(chat, limit=1)
         now = datetime.now()
 
-        print("[ " + self.name + " ] " + "Get new task from " + self.currentChat.name + " at ({})".format(
+        print("[ " + self.name + " ] " + "Get new task from " + self.currentChat.firs_name + " at ({})".format(
             now.strftime("%H:%M:%S")))
 
         if any(ele in msg[0].message for ele in ['no new ads']):
             self.noAds = self.noAds + 1
 
-        self.teleClient.send_message(self.currentChat.name, "/bots")
+        self.teleClient.send_message("@"+self.currentChat.username, "/bots")
         time.sleep(5)
         self.getReward(chat)
 
@@ -76,7 +76,7 @@ class MsgCheck():
                     print("[ " + self.name + " ] " + "Skiping task.....")
                 else:
                     message_channel_id = msg_get[0].id
-                    self.teleClient.forward_messages(self.currentChat.name, message_channel_id, channel_name)
+                    self.teleClient.forward_messages("@"+self.currentChat.username, message_channel_id, channel_name)
                     print("[ " + self.name + " ] " + "Forward message send good good!")
                     
                     
@@ -94,7 +94,7 @@ class MsgCheck():
                 ))
         except:
             print(
-                "[ " + self.name + " ] " + "no new ads available form for MsgBot " + self.currentChat.name + " (" + str(
+                "[ " + self.name + " ] " + "no new ads available form for MsgBot " + self.currentChat.firstname + " (" + str(
                     self.noAds) + ")")
 
     def GetChatsId(self, channel):
@@ -113,8 +113,5 @@ class MsgCheck():
         return link
 
     def getChannel(self, channel):
-        dlgs = self.teleClient.get_dialogs()
-
-        for dlg in dlgs:
-            if dlg.title == channel['name']:
-                return dlg
+        dlgs = self.teleClient.get_entity("@"+channel['id'])
+        return dlgs
