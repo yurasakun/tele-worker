@@ -49,13 +49,13 @@ class ClickBot():
             time.sleep(sleepTime + 1)
             print('='*30)
 
-        print("[ "+self.name +" ] " +"Get new task from " + self.currentChat.name + " at ({})".format(now.strftime("%H:%M:%S")))
+        print("[ "+self.name +" ] " +"Get new task from " + self.currentChat.first_name + " at ({})".format(now.strftime("%H:%M:%S")))
 
         if any(ele in msg[0].message for ele in ['no new ads']):
             self.noAds = self.noAds +1
-            print("[ "+self.name +" ] " +"No ads aviable from "  + self.currentChat.name  + " (" + str(self.noAds) + ")")
+            print("[ "+self.name +" ] " +"No ads aviable from "  + self.currentChat.first_name  + " (" + str(self.noAds) + ")")
 
-        self.teleClient.send_message(self.currentChat.name, "/visit")
+        self.teleClient.send_message("@"+self.currentChat.username, "/visit")
         time.sleep(5)
         self.getReward(chat)
 
@@ -99,8 +99,6 @@ class ClickBot():
 
 
     def getChannel(self, channel):
-        dlgs = self.teleClient.get_dialogs()
+        dlgs = self.teleClient.get_entity("@"+channel['id'])
+        return dlgs
 
-        for dlg in dlgs:
-            if dlg.title == channel['name']:
-                return dlg
