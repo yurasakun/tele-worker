@@ -24,7 +24,7 @@ class JoinChannel():
         msg = self.teleClient.get_messages(chat, limit=1)
         now = datetime.now()
 
-        print("[ " + self.name + " ] " + "Get new task from " + self.currentChat.name + " at ({})".format(
+        print("[ " + self.name + " ] " + "Get new task from " + self.currentChat.first_name + " at ({})".format(
             now.strftime("%H:%M:%S")))
 
         self.teleClient.send_message("@"+self.currentChat.username, "/join")
