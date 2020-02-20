@@ -23,7 +23,7 @@ class ClickBot():
         self.checkWidthraw(self.currentChat)
 
     def checkWidthraw(self, chat):
-        self.teleClient.send_message(self.currentChat.name, "💵 Withdraw")
+        self.teleClient.send_message("@"+self.currentChat.username, "💵 Withdraw")
         time.sleep(5)
         msg = self.teleClient.get_messages(chat, limit=1)
         widthraw_data = re.findall("\d+\.\d+", msg[0].message)
