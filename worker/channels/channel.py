@@ -33,7 +33,7 @@ class JoinChannel():
         self.Ads = self.Ads + 1
         print("proideno " + str(self.Ads))
 
-    def getReward(self, chat):
+        def getReward(self, chat):
         try:
             msg = self.teleClient.get_messages(chat, limit=1)
             time.sleep(5)
@@ -55,7 +55,8 @@ class JoinChannel():
                     message_id,
                     data=button_data
                 ))
-                print("[ " + self.name + " ] " + "Clicks the joined")
+                self.CheckJoin(chat)
+
             except:
                 self.teleClient(GetBotCallbackAnswerRequest(
                     chat,
@@ -67,6 +68,24 @@ class JoinChannel():
             print(
                 "[ " + self.name + " ] " + "Erorr" + self.currentChat.name + " (" + str(
                     self.Ads) + ")")
+
+    def CheckJoin(self, chat):
+        msg = self.teleClient.get_messages(chat, limit=1)
+        time.sleep(5)
+        if "We cannot find you in the group" in msg[0].message:
+            self.teleClient.send_message(self.currentChat.name, "/join")
+            msg = self.teleClient.get_messages(chat, limit=1)
+            time.sleep(5)
+            message_id = msg[0].id
+            button_data_skip = msg[0].reply_markup.rows[1].buttons[1].data
+            self.teleClient(GetBotCallbackAnswerRequest(
+                chat,
+                message_id,
+                data=button_data_skip
+            ))
+            print("[ " + self.name + " ] " + "skiping task...")
+        else:
+            print("[ " + self.name + " ] " + "Clicks the joined")
 
     def returnName(self, link):
         link = link[link.find("/") + 2:]
