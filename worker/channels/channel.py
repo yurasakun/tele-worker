@@ -27,7 +27,7 @@ class JoinChannel():
         print("[ " + self.name + " ] " + "Get new task from " + self.currentChat.name + " at ({})".format(
             now.strftime("%H:%M:%S")))
 
-        self.teleClient.send_message(self.currentChat.name, "/join")
+        self.teleClient.send_message("@"+self.currentChat.username, "/join")
         time.sleep(5)
         self.getReward(chat)
         self.Ads = self.Ads + 1
@@ -66,7 +66,7 @@ class JoinChannel():
                 print("[ " + self.name + " ] " + "Skiping Task")
         except:
             print(
-                "[ " + self.name + " ] " + "Erorr" + self.currentChat.name + " (" + str(
+                "[ " + self.name + " ] " + "Erorr" + self.currentChat.first_name + " (" + str(
                     self.Ads) + ")")
 
     def CheckJoin(self, chat):
@@ -96,8 +96,5 @@ class JoinChannel():
         return link
 
     def getChannel(self, channel):
-        dlgs = self.teleClient.get_dialogs()
-
-        for dlg in dlgs:
-            if dlg.title == channel['name']:
-                return dlg
+        dlgs = self.teleClient.get_entity("@"+channel['id'])
+        return dlgs
