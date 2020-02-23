@@ -1,10 +1,11 @@
 [
-    {
+      {
         "CLICK_CHANNEL": {
             "click_bot" : {
                 "name": "ZEC Click Bot",
                 "id": "Zcash_click_bot",
-                "wallet": "myZcashWaller"
+                "wallet": "myZcashWaller",
+                "subscribe": true
             }
         },
         "API_ID": 100000,
@@ -16,7 +17,8 @@
             "click_bot" : {
                 "name": "ZEC Click Bot",
                 "id": "Zcash_click_bot",
-                "wallet": "myZcashWaller"
+                "wallet": "myZcashWaller",
+                "subscribe": false
             }
         },
         "API_ID": 1000000,
