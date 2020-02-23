@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 from selenium.webdriver import Firefox
 from selenium.webdriver.firefox.options import Options
 
@@ -7,7 +10,8 @@ from selenium.webdriver.firefox.options import Options
 # https://realpython.com/modern-web-automation-with-python-and-selenium/
 # https://www.techbeamers.com/selenium-webdriver-python-tutorial/
 
-class Simulator():
+
+class Simulator:
     """
     Create headless browser to simulate actions on page
         
@@ -29,7 +33,7 @@ class Simulator():
         Get browser rendered page
         
         Parameters:
-            url (string)   : Target Link
+            link (string)   : Target Link
 
         Returns:
             code (string)  : Page HTML code
